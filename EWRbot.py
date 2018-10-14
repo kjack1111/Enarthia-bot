@@ -7,8 +7,8 @@ client = discord.Client()
 
 @client.event
 async def on_message(M):
-    if(M.content.lower().startswith(PREFIX + "hello")):
-       await client.send_message(M.channel, "Hi!")
+    if(M.content.lower().startswith(PREFIX + "help")):
+       await client.send_message(M.channel, "``$Register: Registers your nation.``")
     if(M.content.lower().startswith(PREFIX + "hcf")):
         if(M.author.id == "113355491450613760"):
             await client.send_message(M.channel, "Burning Microprocessor!")

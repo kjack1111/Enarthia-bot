@@ -1,11 +1,21 @@
+import util
+
 async def register(client, M):
     human = M.author
     await client.send_message(M.channel, f"Hello, <@{human.id}>! It looks like you're trying to register a new nation! Please give me the Name.")
-    M2 = await client.wait_for_message(timeout=30, author=human, channel=M.channel)
-    if M2==None:
-        await client.send_message(M.channel, "The command timed out! Please try again.")
+    rname = await client.wait_for_message(timeout=15, author=human, channel=M.channel)
+    if rname==None:
+        await util.timeout(client, M)
+        return
     else:
-        name = M2.content
+        name = rname
+    await client.send_message(M.channel, f"Alright, <@{human.id}>. Please give me the Government type.")
+    rgovt = await client.wait_for_message(timeout=15, author=human, channel=M.channel)
+    if rgovt==None:
+        await util.timeout(client, M)
+        return
+    else:
+        govt = rgovt
         
 
 
