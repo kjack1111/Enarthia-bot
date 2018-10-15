@@ -1,9 +1,14 @@
 import discord
+import json
 import thekey
 import register
+import listcountries
 PREFIX = "$"
+countries = {}
 
 client = discord.Client()
+with open("countries.json") as f:
+    countries = json.load(f)
 
 @client.event
 async def on_message(M):
@@ -16,6 +21,9 @@ async def on_message(M):
             raise SystemExit
     if(M.content.lower().startswith(PREFIX + "register")):
         await register.register(client, M)
+    if(M.content.lower().startswith(PREFIX + "list")):
+        await listcountries.listcountries(client, M, countries)
+            
 
 @client.event
 async def on_ready():
