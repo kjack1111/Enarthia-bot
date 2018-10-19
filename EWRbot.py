@@ -30,3 +30,5 @@ async def on_ready():
     print("Connected!")
 
 client.run(thekey.token)
+
+import latlong.py
