@@ -3,12 +3,22 @@ import json
 import thekey
 import register
 import listcountries
+import latlong
+import savecountries
 PREFIX = "$"
-countries = {}
+countries = []
+
+with open("countries.json") as f:
+    countries = [latlong.Country(**country) for country in json.load(f)]
+    print(countries)
+
+def savecountries():
+    with open("countries.json", 'w') as f:
+        json.dump(countries, f,
+                  default=lambda o:o.__dict__
+                  )
 
 client = discord.Client()
-with open("countries.json") as f:
-    countries = json.load(f)
 
 @client.event
 async def on_message(M):
@@ -20,8 +30,12 @@ async def on_message(M):
             await client.logout()
             raise SystemExit
     if(M.content.lower().startswith(PREFIX + "register")):
-        await register.register(client, M)
+        newcountry = await register.register(client, M)
+        if(newcountry):
+            countries.append(newcountry)
+            savecountries()
     if(M.content.lower().startswith(PREFIX + "list")):
+        print(countries)
         await listcountries.listcountries(client, M, countries)
             
 
@@ -30,5 +44,3 @@ async def on_ready():
     print("Connected!")
 
 client.run(thekey.token)
-
-import latlong.py

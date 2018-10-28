@@ -2,13 +2,13 @@ import discord
 
 async def listcountries(client, M, countries):
     client.send_typing(M.channel)
-    for key, value in countries.items():
+    for current in countries:
         em = discord.Embed(
-            title=key,
-            description=value["player"]
+            title=current.name,
+            description=current.leader
         )
-        em.add_field(name="money", value=value["money"])
-        em.add_field(name="iron", value=value["iron"])
-        em.add_field(name="copper", value=value["copper"])
+        c = current
+        for res, amt in current.resources.items():
+            em.add_field(name=res, value=amt)
         await client.send_message(M.channel, "", embed=em)
     

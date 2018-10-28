@@ -1,14 +1,1 @@
-{
-	"Eeetland" : {
-		"player" : "Communist Chad",
-		"money" : 1337,
-		"iron" : 0,
-		"copper" : 100
-	},
-	"Extrimus" : {
-		"player" : "Virgin Capitalist",
-		"money" : 69,
-		"iron" : 100,
-		"copper" : 0
-	}
-}
+[{"name": "foo", "leader": "500508926710906890", "government": "bar", "population": 0, "resources": {"asbestos": 0}, "cities": ["baz"]}]
