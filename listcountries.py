@@ -5,7 +5,7 @@ async def listcountries(client, M, countries):
     for current in countries:
         em = discord.Embed(
             title=current.name,
-            description=current.leader
+            description=f"<@{current.leader}>"
         )
         c = current
         for res, amt in current.resources.items():

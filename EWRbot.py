@@ -4,7 +4,6 @@ import thekey
 import register
 import listcountries
 import latlong
-import savecountries
 PREFIX = "$"
 countries = []
 
